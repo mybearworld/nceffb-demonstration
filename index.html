@@ -9,16 +9,32 @@
         font-family: "Noto Color Emoji";
         src: url("./fonts/NotoColorEmoji-Regular.ttf");
       }
+      @font-face {
+        font-family: "Noto Color Emoji No SVG";
+        src: url("./fonts/NotoColorEmoji-Regular-NoSVG.ttf");
+      }
       body {
-        font-family: "Noto Color Emoji";
+        font-family: sans-serif, var(--nce);
         font-size: 2rem;
+      }
+      body::before {
+        font-family: sans-serif;
+        font-size: 1rem;
+        content: var(--nce);
+      }
+      body.regular {
+        --nce: "Noto Color Emoji";
+      }
+      body.nosvg {
+        --nce: "Noto Color Emoji No SVG";
       }
       p {
         margin-block: 0;
       }
     </style>
   </head>
-  <body>
+  <body class="regular">
+    <button id="toggle">Toggle</button>
     <p>🇦🇬🇧🇪🇩🇪🇹🇿</p>
     <p style="color: red">🇦🇬🇧🇪🇩🇪🇹🇿</p>
     <p style="color: orange">🇦🇬🇧🇪🇩🇪🇹🇿</p>
@@ -32,4 +48,10 @@
     <p style="color: white">🇦🇬🇧🇪🇩🇪🇹🇿</p>
     <p style="color: black">🇦🇬🇧🇪🇩🇪🇹🇿</p>
   </body>
+  <script>
+    document.querySelector("#toggle").addEventListener("click", () => {
+      document.body.classList.toggle("regular");
+      document.body.classList.toggle("nosvg");
+    });
+  </script>
 </html>
